@@ -48,7 +48,7 @@ bool RoundedButton(const char* id, const char* text, float offset_x = 0.0f)
         text
     );
 
-    // ❗ возвращаем X назад, Y не трогаем
+    // ❗ возвращаем X назад, Y не трогае
     ImGui::SetCursorPos(cursor);
 
     return pressed;
