@@ -1,6 +1,25 @@
+# Visual Studio
 .vs/
-bin/
-obj/
+
+# Сборки
 x64/
-*.user
+x86/
+Debug/
+Release/
+
+# Сборки в подпапках
+**/x64/
+**/x86/
+**/Debug/
+**/Release/
+
+# Временные файлы VS
 *.suo
+*.user
+*.VC.db
+*.VC.opendb
+
+# Кэш
+ipch/
+obj/
+bin/
