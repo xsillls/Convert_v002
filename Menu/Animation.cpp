@@ -1,6 +1,4 @@
 ﻿#include "Menu.h"
-
-
 int loads = -1;
 int index_animation = 0;
 

@@ -11,7 +11,7 @@ bool DrawStyledButton(const char* label, ImVec2 size)
 {
     ImVec2 pos = ImGui::GetCursorScreenPos();
 
-    // 👇 это уже создаёт layout
+    
     ImGui::InvisibleButton((std::string(label) + "##btn").c_str(), size);
 
     bool hovered = ImGui::IsItemHovered();
@@ -43,15 +43,15 @@ void DrawProgressBar(const char* id, float progress, ImVec2 size)
     ImDrawList* draw = ImGui::GetWindowDrawList();
     ImVec2 pos = ImGui::GetCursorScreenPos();
 
-    // создаём layout (ВАЖНО)
+    
     ImGui::InvisibleButton(id, size);
 
-    // clamp
+    
     progress = std::clamp(progress, 0.0f, 1.0f);
 
     float rounding = size.y * 0.5f;
 
-    // фон
+   
     draw->AddRectFilled(
         pos,
         ImVec2(pos.x + size.x, pos.y + size.y),
@@ -59,7 +59,7 @@ void DrawProgressBar(const char* id, float progress, ImVec2 size)
         rounding
     );
 
-    // заливка
+  
     draw->AddRectFilled(
         pos,
         ImVec2(pos.x + size.x * progress, pos.y + size.y),
@@ -67,7 +67,7 @@ void DrawProgressBar(const char* id, float progress, ImVec2 size)
         rounding
     );
 
-    // текст %
+    
     char buf[32];
     sprintf_s(buf, "%d%%", (int)(progress * 100));
 
@@ -98,11 +98,11 @@ bool DrawStyledSlider(const char* id, float* value, float min, float max, ImVec2
 
     float rounding = size.y * 0.5f;
 
-    // 🎨 цвета (стабильная шкала)
+
     ImU32 bg = IM_COL32(35, 35, 40, 180);
     ImU32 fill = IM_COL32(90, 90, 100, 220);
 
-    // 🎯 кружок отдельно
+
     ImU32 grab = IM_COL32(140, 140, 150, 255);
 
     if (hovered)
@@ -111,7 +111,7 @@ bool DrawStyledSlider(const char* id, float* value, float min, float max, ImVec2
     if (active)
         grab = IM_COL32(200, 200, 210, 255);
 
-    // 🔥 позиция кружка С ОТСТУПОМ (чтобы не вылазил)
+
     float r = size.y * 0.45f;
     float grab_x = pos.x + t * (size.x - r * 2) + r;
 

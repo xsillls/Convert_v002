@@ -1,7 +1,7 @@
 #pragma once
 #include <atomic>
 #include <string>
-#include <oleidl.h> // IDropTarget
+#include <oleidl.h> 
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -34,7 +34,7 @@ extern bool Button_Menu_Extract;
 
 
 
-// factory
+
 IDropTarget* CreateDropTarget();
 
 
@@ -50,11 +50,11 @@ public:
 
     File_Entry(const std::string& p) : path(p) {}
 
-    // ❌ запрет копирования
+
     File_Entry(const File_Entry&) = delete;
     File_Entry& operator=(const File_Entry&) = delete;
 
-    // ✅ разрешаем перемещение
+
     File_Entry(File_Entry&& other) noexcept
         : path(std::move(other.path)),
         progress(other.progress.load()),

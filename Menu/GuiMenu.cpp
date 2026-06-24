@@ -1,9 +1,6 @@
 ﻿#include <thread>
 #include "Menu.h"
 
-
-
-
 bool RoundedButton(const char* id, const char* text, float offset_x = 0.0f)
 {
     ImVec2 size(276, 36);
@@ -48,7 +45,7 @@ bool RoundedButton(const char* id, const char* text, float offset_x = 0.0f)
         text
     );
 
-    // ❗ возвращаем X назад, Y не трогае
+
     ImGui::SetCursorPos(cursor);
 
     return pressed;
@@ -58,7 +55,7 @@ std::string ShortenPath(const std::string& path, size_t max_len)
     if (path.size() <= max_len)
         return path;
 
-    if (max_len < 5) // защита
+    if (max_len < 5) 
         return "...";
 
     size_t keep = (max_len - 3) / 2;
@@ -106,7 +103,7 @@ uint32_t GetPartsCount(const std::string& path, double part_mb)
 
         uint32_t parts = size / part_size;
 
-        // если есть остаток → +1 часть
+      
         if (size % part_size != 0)
             parts++;
 
@@ -122,7 +119,7 @@ static float g_slider = 0.5f;
 static float parts = 100;
 void DrawMainUI()
 {
-    //ImGui::Text("%s", g_FilePath.c_str());
+    
     size_t pos = g_FilePath.find_last_of("\\/");
 
     std::string filename = g_FilePath;
@@ -266,13 +263,13 @@ void Menu()
         ImGuiWindowFlags_NoResize |
         ImGuiWindowFlags_NoMove |
         ImGuiWindowFlags_NoCollapse |
-        ImGuiWindowFlags_NoBackground |          // ← добавь это обязательно!
-        ImGuiWindowFlags_NoSavedSettings         // опционально, если не нужно сохранять позицию
+        ImGuiWindowFlags_NoBackground |         
+        ImGuiWindowFlags_NoSavedSettings         
     );
 
     ImDrawList* dl = ImGui::GetWindowDrawList();
 
-    // ================= DRAG ZONE (0–20 px) =================
+  
     ImGui::SetCursorPos(ImVec2(0, 0));
     ImGui::PushID("drag_zone");
     ImGui::InvisibleButton("##drag", ImVec2(500, 20));
@@ -293,7 +290,7 @@ void Menu()
             RECT r;
             GetWindowRect(g_hwnd, &r);
 
-            // сохраняем смещение курсора относительно окна
+           
             drag_offset.x = mouse.x - r.left;
             drag_offset.y = mouse.y - r.top;
         }
@@ -317,7 +314,7 @@ void Menu()
 
     // ================= UI =================
 
-    // фон
+ 
     dl->AddRectFilled(
         ImVec2(0, 30),
         ImVec2(600, 350),
@@ -325,7 +322,7 @@ void Menu()
         14.0f
     );
 
-    // верх справа
+ 
     dl->AddRectFilled(
         ImVec2(500, 1),
         ImVec2(595, 25),
@@ -333,7 +330,6 @@ void Menu()
         14.0f
     );
 
-    // верх слева
     dl->AddRectFilled(
         ImVec2(5, 1),
         ImVec2(205, 25),
@@ -345,15 +341,15 @@ void Menu()
     ImGui::Text("%s", Logo_Anim("hello").c_str());
 
     ImGui::SetCursorPos(ImVec2(8, 40));
-    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));  // Принудительно прозрачный фон ImGui
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));  
 
     ImGui::SetCursorPosX(20);
     ImGui::SetCursorPosY(35);
     ImGui::BeginChild(
         "WorkArea_Button",
-        ImVec2(562, 40),   // высота области
-        false,            // без рамки
-        ImGuiWindowFlags_None   // ← ВАЖНО: НИКАКИХ принудительных скроллов
+        ImVec2(562, 40),  
+        false,          
+        ImGuiWindowFlags_None   
     );
     {
         if (RoundedButton("1", "Compress", 2))
@@ -369,16 +365,15 @@ void Menu()
     if (Button_Menu == 1)
     {
         ImGui::SetCursorPos(ImVec2(8, 40));
-        ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 0)); // прозрачный фон
-
+        ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 0)); 
         ImGui::SetCursorPosX(20);
         ImGui::SetCursorPosY(50 + 50);
         ImGui::BeginChild(
             "WorkArea",
             ImVec2(562, 150
-            ),   // высота области
-            false,            // без рамки
-            ImGuiWindowFlags_None   // ← ВАЖНО: НИКАКИХ принудительных скроллов
+            ),   
+            false,            
+            ImGuiWindowFlags_None   
         );
         {
             File_List::Get()->Update_Gui();

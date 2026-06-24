@@ -83,10 +83,10 @@ struct SimpleDropTarget : public IDropTarget
                 g_FilePath = path;
                 g_FileDropped = true;
 
-                // ❌ папки игнорируем
+                
                 if (!IsDirectory(path))
                 {
-                    // ✅ нужное расширение
+                    
                     if (HasExtension(path, ".xxs"))
                     {
                         Button_Menu = 1;
@@ -96,7 +96,7 @@ struct SimpleDropTarget : public IDropTarget
                     {
                         Button_Menu = 2;
                         Button_Menu_Extract = true;
-                        //SplitFile(path, 1);
+                       
                        
                     }
                 }

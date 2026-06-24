@@ -14,7 +14,7 @@
 
 namespace fs = std::filesystem;
 
-// 🔍 просмотр одного файла
+
 inline int Inverter(const std::string& name)
 {
     std::ifstream file(name, std::ios::binary);
@@ -49,7 +49,7 @@ inline int Inverter(const std::string& name)
     return 0;
 }
 
-// 🔥 проверка + сборка
+
 inline int CheckAndAssemble(const std::string& start_path, std::atomic<float>& progress)
 {
     fs::path base_path(start_path);
@@ -109,10 +109,10 @@ inline int CheckAndAssemble(const std::string& start_path, std::atomic<float>& p
             all_parts.push_back(p);
         }
 
-        // 🔥 0 → 30% = поиск
+       
         float target = ((float)processed_files / (float)total_files) * 0.3f;
 
-        // плавное приближение
+        
         progress = progress + (target - progress) * 0.1f;
     }
 

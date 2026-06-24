@@ -39,7 +39,6 @@ void File_List::Add(const std::string& path)
     std::string name(h.name, 64); name = name.c_str();
     std::string ext(h.ext, 16);   ext = ext.c_str();
 
-    // 🔥 проверяем уже добавленные
     for (auto& f : files)
     {
         std::ifstream f2(f.path, std::ios::binary);
@@ -54,14 +53,14 @@ void File_List::Add(const std::string& path)
         std::string name2(h2.name, 64); name2 = name2.c_str();
         std::string ext2(h2.ext, 16);   ext2 = ext2.c_str();
 
-        // ✅ ЕСЛИ ЭТО ТОТ ЖЕ ФАЙЛ → НЕ ДОБАВЛЯЕМ
+        
         if (name == name2 && ext == ext2 && h.file_size == h2.file_size)
         {
             return;
         }
     }
 
-    // ✅ если не найден → добавляем
+    
     files.push_back(File_Entry(path));
 }
 
@@ -78,7 +77,7 @@ std::string Format_text(const std::string& text)
     if ((int)text.size() <= MAX)
         return text;
 
-    int keep = (MAX - 3) / 2;      // сколько символов оставляем слева и справа
+    int keep = (MAX - 3) / 2;     
 
     std::string left = text.substr(0, keep);
     std::string right = text.substr(text.size() - keep, keep);
@@ -167,7 +166,7 @@ void Form_Button(File_Entry& object, int state)
 {
     std::string path = object.path;
 
-    // ✅ СБРОС СРАЗУ (в UI потоке)
+   
     object.progress = 0.0f;
     object.working = true;
     object.done = false;
@@ -201,7 +200,7 @@ void Form_Button(File_Entry& object, int state)
 
                 if (object.doneTimer >= 5.0f)
                 {
-                    std::string path = object.path; // 💣 сохраняем перед удалением
+                    std::string path = object.path; 
 
                     object.done = false;
                     object.progress = 0.0f;

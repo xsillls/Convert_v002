@@ -24,14 +24,14 @@ inline int Assemble(std::vector<PartFile> parts, std::atomic<float>& progress)
         return 1;
     }
 
-    // 🔽 сортировка (обязательно)
+   
     std::sort(parts.begin(), parts.end(),
         [](const PartFile& a, const PartFile& b)
         {
             return a.header.part < b.header.part;
         });
 
-    // имя файла
+   
     std::string name(parts[0].header.name, 64);
     name = name.c_str();
 
@@ -47,7 +47,7 @@ inline int Assemble(std::vector<PartFile> parts, std::atomic<float>& progress)
         return 1;
     }
 
-    // 🔥 сборка
+  
     for (const auto& p : parts)
     {
         std::ifstream file(p.path, std::ios::binary);

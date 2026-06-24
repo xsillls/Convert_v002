@@ -21,15 +21,10 @@ int Button_Menu = 0;
 bool Button_Menu_Extract = false;
 
 
-
-
-
-// ================= Windows Blur
-
 void EnableBlur(HWND hwnd)
 {
     ACCENT_POLICY policy{};
-    policy.AccentState = 4; // Acrylic blur
+    policy.AccentState = 4; 
     policy.GradientColor = 0x990000;
 
     WINDOWCOMPOSITIONATTRIBDATA data{};
